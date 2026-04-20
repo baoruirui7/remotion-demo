@@ -11,7 +11,7 @@ export const Scene5Outro: React.FC = () => {
   const urlY = interpolate(frame, [50, 75], [20, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const fadeOut = interpolate(frame, [durationInFrames - 30, durationInFrames], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const lineWidth = interpolate(frame, [30, 70], [0, 500], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const lineOpacity = interpolate(frame, [30, 70, 90, durationInFrames - 30], [0, 0.8, 0.5, 0.3], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const lineOpacity = interpolate(frame, [30, 70], [0, 0.8], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
   return (
     <AbsoluteFill style={{ background: "radial-gradient(ellipse at center, #0a0a1a 0%, #000000 100%)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", fontFamily: "-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif", overflow: "hidden" }}>
