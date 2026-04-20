@@ -2,19 +2,33 @@ import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 
 export const Scene4Mission: React.FC = () => {
   const frame = useCurrentFrame();
-  const { durationInFrames } = useVideoConfig();
 
   const mainText = "让信息找到人";
   const subText = "用技术改变世界";
 
   // 过渡由外层 FadeWrapper 统一处理，此处无需重复
 
-  const labelOpacity = interpolate(frame, [15, 40], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const subOpacity = interpolate(frame, [55, 80], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const subY = interpolate(frame, [55, 80], [30, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const labelOpacity = interpolate(frame, [15, 40], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const subOpacity = interpolate(frame, [55, 80], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const subY = interpolate(frame, [55, 80], [30, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
-  const ringScale = interpolate(frame, [0, 120], [0.8, 1.3], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
-  const ringOpacity = interpolate(frame, [0, 30, 90, 115], [0, 0.18, 0.12, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const ringScale = interpolate(frame, [0, 120], [0.8, 1.3], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const ringOpacity = interpolate(frame, [0, 30, 90, 115], [0, 0.18, 0.12, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
 
   const chars = mainText.split("");
   const charAnimStart = 20;
@@ -23,12 +37,14 @@ export const Scene4Mission: React.FC = () => {
   return (
     <AbsoluteFill
       style={{
-        background: "linear-gradient(135deg, #040D2E 0%, #071547 50%, #0D1B5E 100%)",
+        background:
+          "linear-gradient(135deg, #040D2E 0%, #071547 50%, #0D1B5E 100%)",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        fontFamily: "-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif",
+        fontFamily:
+          "-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif",
         overflow: "hidden",
       }}
     >
@@ -62,7 +78,8 @@ export const Scene4Mission: React.FC = () => {
           width: 400,
           height: 400,
           borderRadius: "50%",
-          background: "radial-gradient(ellipse at center, rgba(22,100,255,0.15) 0%, transparent 70%)",
+          background:
+            "radial-gradient(ellipse at center, rgba(22,100,255,0.15) 0%, transparent 70%)",
           opacity: ringOpacity * 2,
         }}
       />
@@ -83,19 +100,26 @@ export const Scene4Mission: React.FC = () => {
       </div>
 
       {/* 主文字逐字动画 */}
-      <div style={{ display: "flex", flexDirection: "row", gap: 4, marginBottom: 44 }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 4,
+          marginBottom: 44,
+        }}
+      >
         {chars.map((char, i) => {
           const charOpacity = interpolate(
             frame,
             [charAnimStart + i * charDelay, charAnimStart + i * charDelay + 15],
             [0, 1],
-            { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+            { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
           );
           const charY = interpolate(
             frame,
             [charAnimStart + i * charDelay, charAnimStart + i * charDelay + 15],
             [40, 0],
-            { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+            { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
           );
           return (
             <span
@@ -136,10 +160,17 @@ export const Scene4Mission: React.FC = () => {
         style={{
           position: "absolute",
           bottom: "18%",
-          width: interpolate(frame, [60, 95], [0, 320], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+          width: interpolate(frame, [60, 95], [0, 320], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          }),
           height: 1,
-          background: "linear-gradient(to right, transparent, #1664FF, transparent)",
-          opacity: interpolate(frame, [60, 90], [0, 0.6], { extrapolateLeft: "clamp", extrapolateRight: "clamp" }),
+          background:
+            "linear-gradient(to right, transparent, #1664FF, transparent)",
+          opacity: interpolate(frame, [60, 90], [0, 0.6], {
+            extrapolateLeft: "clamp",
+            extrapolateRight: "clamp",
+          }),
         }}
       />
     </AbsoluteFill>
