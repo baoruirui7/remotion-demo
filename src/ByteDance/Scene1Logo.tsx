@@ -4,7 +4,6 @@ export const Scene1Logo: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Logo scale + fade in
   const logoProgress = spring({ frame, fps, config: { damping: 80, stiffness: 60 } });
   const logoScale = interpolate(logoProgress, [0, 1], [0.3, 1]);
   const logoOpacity = interpolate(frame, [0, 20], [0, 1], {
@@ -12,7 +11,6 @@ export const Scene1Logo: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Subtitle fade in
   const subtitleOpacity = interpolate(frame, [50, 80], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -22,9 +20,7 @@ export const Scene1Logo: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Particles
   const particles = Array.from({ length: 20 }, (_, i) => {
-    const seed = (i * 137.508) % 360;
     const x = ((i * 73 + 11) % 100);
     const y = ((i * 47 + 23) % 100);
     const size = 2 + (i % 4);
@@ -38,7 +34,7 @@ export const Scene1Logo: React.FC = () => {
       extrapolateLeft: "clamp",
       extrapolateRight: "clamp",
     });
-    return { x, y, size, particleOpacity, offsetY, seed };
+    return { x, y, size, particleOpacity, offsetY };
   });
 
   return (
@@ -53,7 +49,6 @@ export const Scene1Logo: React.FC = () => {
         overflow: "hidden",
       }}
     >
-      {/* Particles */}
       {particles.map((p, i) => (
         <div
           key={i}
@@ -72,7 +67,6 @@ export const Scene1Logo: React.FC = () => {
         />
       ))}
 
-      {/* Blue glow line */}
       <div
         style={{
           position: "absolute",
@@ -84,7 +78,6 @@ export const Scene1Logo: React.FC = () => {
         }}
       />
 
-      {/* Main Logo */}
       <div
         style={{
           opacity: logoOpacity,
@@ -92,31 +85,14 @@ export const Scene1Logo: React.FC = () => {
           textAlign: "center",
         }}
       >
-        <div
-          style={{
-            fontSize: 96,
-            fontWeight: 800,
-            color: "#FFFFFF",
-            letterSpacing: 8,
-            lineHeight: 1.1,
-          }}
-        >
+        <div style={{ fontSize: 96, fontWeight: 800, color: "#FFFFFF", letterSpacing: 8, lineHeight: 1.1 }}>
           字节跳动
         </div>
-        <div
-          style={{
-            fontSize: 48,
-            fontWeight: 300,
-            color: "#1664FF",
-            letterSpacing: 16,
-            marginTop: 8,
-          }}
-        >
+        <div style={{ fontSize: 48, fontWeight: 300, color: "#1664FF", letterSpacing: 16, marginTop: 8 }}>
           ByteDance
         </div>
       </div>
 
-      {/* Subtitle */}
       <div
         style={{
           opacity: subtitleOpacity,
@@ -125,14 +101,7 @@ export const Scene1Logo: React.FC = () => {
           textAlign: "center",
         }}
       >
-        <div
-          style={{
-            fontSize: 28,
-            color: "rgba(255,255,255,0.7)",
-            letterSpacing: 6,
-            fontWeight: 300,
-          }}
-        >
+        <div style={{ fontSize: 28, color: "rgba(255,255,255,0.7)", letterSpacing: 6, fontWeight: 300 }}>
           激发创造，丰富生活
         </div>
       </div>
